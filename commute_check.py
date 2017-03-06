@@ -1,4 +1,4 @@
-# Creating functions that check public transport links for my commute to work.
+# Check public transport links arrival times
 import requests, json
 from config import *
 from datetime import datetime
@@ -8,10 +8,10 @@ from datetime import datetime
 tube_url = 'https://api.tfl.gov.uk/Line/piccadilly/Arrivals/' + tube_station + '/?direction=inbound&app_id=' + app_id + '&app_key=' + app_key
 bus_url = 'https://api.tfl.gov.uk/Line/9/Arrivals?stopPointId=' + bus_stop + '&app_id=' + app_id + '&app_key=' + app_key
 train_url = 'https://api.tfl.gov.uk/StopPoint/' + train_station +'/arrivals'
+status_url = 'https://api.tfl.gov.uk/line/mode/tube/status'
 
 
-# Function that checks arrival time, including walk times for my commute to work
-# Feeds arguments for walk time to station, mode of transport (Tube, Train, Bus) and the URl for the API feed
+# Check arrival time, including walk times for my commute to work (Bus, Tube, Train)
 def commute(walk, mode, url):
     transport = requests.get(url).json()
     count = 0
@@ -23,7 +23,18 @@ def commute(walk, mode, url):
             count += 1
 
 
-# A function that will show relevant transport based upon the current hour
+# Check status of the Tube line
+def status(url):
+    transport = requests.get(url).json()
+    test = transport[8]['lineStatuses'][0]['statusSeverityDescription']
+
+    if test == "Good Service":
+        print 'Piccadilly has a good service'
+    else:
+        print 'Get the bus'
+
+
+# Show relevant transport based upon the current hour
 def decision():
     now = datetime.now()
     hour = '%s' % (now.hour)
@@ -33,6 +44,7 @@ def decision():
         commute(5, 'Bus', bus_url)
 
     else:
+        status(status_url)
         commute(12, 'Tube', tube_url)
         commute(5, 'Bus', bus_url)
 
