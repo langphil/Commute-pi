@@ -12,8 +12,7 @@ train_url = 'https://api.tfl.gov.uk/StopPoint/' + train_station +'/arrivals'
 
 # Function that checks arrival time, including walk times for my commute to work
 # Feeds arguments for walk time to station, mode of transport (Tube, Train, Bus) and the URl for the API feed
-def commute(walk, mode, station):
-    url = station
+def commute(walk, mode, url):
     transport = requests.get(url).json()
     count = 0
 
