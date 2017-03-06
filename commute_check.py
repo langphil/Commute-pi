@@ -26,9 +26,9 @@ def commute(walk, mode, url):
 # Check status of the Tube line
 def status(url):
     transport = requests.get(url).json()
-    test = transport[8]['lineStatuses'][0]['statusSeverityDescription']
+    status_desc = transport[8]['lineStatuses'][0]['statusSeverityDescription']
 
-    if test == "Good Service":
+    if status_desc == "Good Service":
         print 'Piccadilly has a good service'
     else:
         print 'Get the bus'
@@ -39,13 +39,13 @@ def decision():
     now = datetime.now()
     hour = '%s' % (now.hour)
 
-    if hour < 7 or hour > 9:
+    if hour < 7 and hour > 9:
+        status(status_url)
         commute(3, 'Train', train_url)
-        commute(5, 'Bus', bus_url)
+        commute(12, 'Tube', tube_url)
 
     else:
-        status(status_url)
-        commute(12, 'Tube', tube_url)
+        commute(3, 'Train', train_url)
         commute(5, 'Bus', bus_url)
 
 
