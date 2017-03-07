@@ -1,23 +1,43 @@
 # Check Dart departure times for Bayside
-# ToDo
-# 1. Loop through and only return results for a certain direction
-# 2. Subtract estimated time from current time to work out how many minutes until next train
-# 3. Add in a function to consider walking time to the station
-# 4. Weather for walking?
-# 5. Add a counter to count how many times the train is early / late
-# 6. Factor in a messge for trains not running - night time etc..
-# 7. Fix late message to factor in Dart being early
-
-
 import requests, json
 from datetime import datetime
 from xml.etree import ElementTree
+
 
 # Call and parse XML file
 url = 'http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByNameXML?StationDesc=Bayside'
 response = requests.get(url)
 train = ElementTree.fromstring(response.content)
 
+
+# Looping and printing all Northside trains
+def direction(final_stop):
+
+    for x in train: # THIS GETS ME ALL THE PATIENT ATTRIBUTES
+        origin = x[6].text
+        destination = x[7].text
+        location = x[11].text
+        sched = x[17].text
+        est = x[15].text
+        dueIn = x[12].text
+
+        if destination == final_stop:
+            print 'Destination: ' + destination
+            print 'Train is due in ' + dueIn + ' mins'
+            print location
+            print 'Scheduled: ' + sched
+            print 'Estimated: ' + est
+            print
+
+
+direction('Bray')
+direction('Howth')
+
+
+# DEPRECATED CODE
+
+
+# Parse XML
 station = train[0][2].text
 destination = train[0][7].text
 nextTrainSched = train[0][17].text
