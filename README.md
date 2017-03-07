@@ -30,4 +30,8 @@ To do
 
 * [ ] Add a status function for tube and train lines
 * [ ] Add PaPiRus screen functionality
-* [ ] See dart.py for a ToDo list
+* [ ] Subtract estimated time from current time to work out how many minutes until next train
+* [ ] Add in a function to consider walking time to the station
+* [ ] Add a counter to count how many times the train is early / late
+* [ ] Factor in a message for trains not running - night time etc..
+* [ ] Fix late message to factor in Dart being early
