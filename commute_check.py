@@ -1,6 +1,5 @@
 # Check public transport links arrival times
 import requests, json
-from urllib3.contrib import pyopenssl
 from config import *
 from datetime import datetime
 
@@ -49,5 +48,5 @@ def decision():
         commute(3, 'Train', train_url)
         commute(5, 'Bus', bus_url)
 
-
+commute(3, 'Train', train_url)
 decision()
