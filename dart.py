@@ -35,5 +35,5 @@ def onTime():
         print 'Dart is not on time: originally scheduled for ' + nextTrainSched
 
 
-print 'The next Dart to ' + destination + ' leaves from ' + station + ' is at ' + nextTrainEst + '. It has just ' + justLeft + '.'
-onTime()
+#print 'The next Dart to ' + destination + ' leaves from ' + station + ' is at ' + nextTrainEst + '. It has just ' + justLeft + '.'
+#onTime()
