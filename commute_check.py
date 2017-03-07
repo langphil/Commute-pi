@@ -15,7 +15,7 @@ status_url = 'https://api.tfl.gov.uk/line/mode/tube/status'
 def commute(walk, mode, url):
     transport = requests.get(url).json()
     count = 0
-    return transport
+
     for i in sorted(transport, key=lambda i: i['timeToStation']):
         if count <= 2:
             status = (i['timeToStation'] / 60 + walk)
@@ -47,5 +47,6 @@ def decision():
     else:
         commute(3, 'Train', train_url)
         commute(5, 'Bus', bus_url)
+
 
 decision()
