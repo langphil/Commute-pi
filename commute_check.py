@@ -1,5 +1,6 @@
 # Check public transport links arrival times
 import requests, json
+from urllib3.contrib import pyopenssl
 from config import *
 from datetime import datetime
 
@@ -15,7 +16,7 @@ status_url = 'https://api.tfl.gov.uk/line/mode/tube/status'
 def commute(walk, mode, url):
     transport = requests.get(url).json()
     count = 0
-
+    return transport
     for i in sorted(transport, key=lambda i: i['timeToStation']):
         if count <= 2:
             status = (i['timeToStation'] / 60 + walk)
