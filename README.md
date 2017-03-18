@@ -6,8 +6,7 @@ Displayed on a PaPiRus e-ink screen
 Transport Systems included:
 
 * TFL - London (Bus, Tube, Train)
-* DART - Dublin (Train)
-
+* DART - Dublin (Train - Set for Bayside Dart Station / Direction Southside)
 
 ## How do I run this?
 To do
@@ -15,7 +14,7 @@ To do
 
 ### Requirements
 * Raspberry Pi (2/3)
-* [PaPiRus](https://www.kickstarter.com/projects/pisupply/papirus-the-epaper-screen-hat-for-your-raspberry-p) - Raspberry Pi HAT
+* [Pimoroni ScrollPhat](http://docs.pimoroni.com/scrollphat)
 
 
 ### Instructions
@@ -29,7 +28,7 @@ To do
 ## TO DO
 
 * [ ] Add a status function for tube and train lines
-* [ ] Add PaPiRus screen functionality
+* [ ] Add PaPiRus screen functionality / Scrollphat
 * [ ] Subtract estimated time from current time to work out how many minutes until next train
 * [ ] Add in a function to consider walking time to the station
 * [ ] Add a counter to count how many times the train is early / late
